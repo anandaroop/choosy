@@ -11,6 +11,16 @@ The first known use case will be for the Comp Retrieval (Valuation) project, whi
 - later allow free-field input for new artwork evaluation
 - internal users initally, external users eventually
 
+## Workflow
+
+When asked about the project state ("sup?", "where we at", etc) you should scan the Project milestones, determining which one is current, and reading the tickets in that milestone.
+
+Before picking up a new ticket, ensure `main` is up to date with the remote, and that all ticket statuses are up to date.
+
+When asked to work on multiple tickets or an entire milestone at once, use /gh-stack to create a PR stack, one PR per ticket.
+
+When you would benefit from synchronous attention from me, whether code review, or unblocking, use /ntfy to ping me with your request.
+
 ## Project management
 
 Work is tracked on the GitHub Project board, not in a markdown checklist:
@@ -35,8 +45,6 @@ Work is tracked on the GitHub Project board, not in a markdown checklist:
 - Note: `gh issue edit <n> --milestone <value>` requires the milestone
   **title**, not its number — passing a bare number silently fails with
   `'<n>' not found` on this `gh` version.
-
-Begin every session by scanning the milestones, determining which one is current, and reading the tickets in that milestone.
 
 <!-- BEGIN:nextjs-agent-rules -->
 
