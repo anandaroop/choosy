@@ -15,11 +15,17 @@ export const authOptions: NextAuthOptions = {
       type: "oauth",
       clientId: CLIENT_APPLICATION_ID,
       clientSecret: CLIENT_APPLICATION_SECRET,
+      client: {
+        token_endpoint_auth_method: "client_secret_post",
+      },
       authorization: {
         url: `${GRAVITY_URL}/oauth2/authorize`,
         params: { scope: "offline_access" },
       },
-      token: `${GRAVITY_URL}/oauth2/access_token?on_success=200`,
+      token: {
+        url: `${GRAVITY_URL}/oauth2/access_token?on_success=200`,
+        params: { on_success: 200 },
+      },
       userinfo: {
         url: `${GRAVITY_URL}/api/v1/me`,
         async request({ tokens }) {
