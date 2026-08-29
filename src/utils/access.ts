@@ -1,7 +1,7 @@
 import { isFlagEnabledForUser } from "lib/unleash/server"
 import { Action, isPermitted } from "system"
 
-export const LABELING_ACCESS_FLAG = "valuation_choosy-labeling"
+export const LABELING_ACCESS_FLAG = "c2c_valuation-choosy-access"
 
 export type AccessReason =
   "team-role" | "feature-flag" | "denied" | "unleash-unavailable"
