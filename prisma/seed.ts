@@ -6,9 +6,14 @@ import { PrismaClient } from "@prisma/client"
 config({ path: ".env.local" })
 config()
 
+import dataset from "../src/data/loadDataset"
+
 const prisma = new PrismaClient()
 
-const DATASET_ID = "seed-dataset-v1"
+/// A dataset has one identity per build: version and id are the same
+/// concept (see labeling/types.ts), so submissions are scoped by the
+/// dataset's own version rather than a separately-tracked id.
+const DATASET_ID = dataset.version
 
 /// Fixed so re-running the seed produces byte-identical rows (idempotent).
 const SEEDED_AT = new Date("2026-01-01T00:00:00.000Z")
@@ -31,21 +36,14 @@ async function main() {
       createdAt: SEEDED_AT,
       ratings: {
         create: [
+          { candidateLotId: "lot-1a", rating: "strong_match", note: null },
           {
-            candidateLotId: "target-1-candidate-1",
-            rating: "strong_match",
-            note: null,
-          },
-          {
-            candidateLotId: "target-1-candidate-2",
+            candidateLotId: "lot-1b",
             rating: "weak_match",
             note: "similar palette",
           },
-          {
-            candidateLotId: "target-1-candidate-3",
-            rating: "no_match",
-            note: null,
-          },
+          { candidateLotId: "lot-1c", rating: "no_match", note: null },
+          { candidateLotId: "lot-1d", rating: "no_match", note: null },
         ],
       },
     },
@@ -60,21 +58,14 @@ async function main() {
       createdAt: SEEDED_AT,
       ratings: {
         create: [
+          { candidateLotId: "lot-1a", rating: "weak_match", note: null },
+          { candidateLotId: "lot-1b", rating: "weak_match", note: null },
           {
-            candidateLotId: "target-1-candidate-1",
-            rating: "weak_match",
-            note: null,
-          },
-          {
-            candidateLotId: "target-1-candidate-2",
-            rating: "weak_match",
-            note: null,
-          },
-          {
-            candidateLotId: "target-1-candidate-3",
+            candidateLotId: "lot-1c",
             rating: "strong_match",
             note: "closer than it looks",
           },
+          { candidateLotId: "lot-1d", rating: "no_match", note: null },
         ],
       },
     },
