@@ -1,0 +1,125 @@
+{
+  "version": "comps-v1",
+  "items": [
+    {
+      "targetId": "target-1",
+      "target": {
+        "id": "lot-target-1",
+        "imageUrl": "https://picsum.photos/seed/target-1/600/600",
+        "artistName": "Yayoi Kusama",
+        "title": "Infinity Nets (TWAOA)",
+        "details": "Acrylic on canvas, 2007, 45.5 x 38 cm"
+      },
+      "candidates": [
+        {
+          "id": "lot-1a",
+          "imageUrl": "https://picsum.photos/seed/1a/600/600",
+          "artistName": "Yayoi Kusama",
+          "title": "Infinity Nets (OTMHL)",
+          "details": "Acrylic on canvas, 2009, 45.5 x 38 cm"
+        },
+        {
+          "id": "lot-1b",
+          "imageUrl": "https://picsum.photos/seed/1b/600/600",
+          "artistName": "Yayoi Kusama",
+          "title": "Pumpkin",
+          "details": "Acrylic on canvas, 2004, 33.3 x 24.2 cm"
+        },
+        {
+          "id": "lot-1c",
+          "imageUrl": "https://picsum.photos/seed/1c/600/600",
+          "artistName": "Yayoi Kusama",
+          "title": "Infinity Nets (QWERT)",
+          "details": "Acrylic on canvas, 2010, 53 x 45.5 cm"
+        },
+        {
+          "id": "lot-1d",
+          "imageUrl": "https://picsum.photos/seed/1d/600/600",
+          "artistName": "Yayoi Kusama",
+          "title": "Dots Obsession",
+          "details": "Acrylic on canvas, 2012, 65.2 x 53 cm"
+        }
+      ]
+    },
+    {
+      "targetId": "target-2",
+      "target": {
+        "id": "lot-target-2",
+        "imageUrl": "https://picsum.photos/seed/target-2/600/600",
+        "artistName": "Alex Katz",
+        "title": "Blue Umbrella 2",
+        "details": "Oil on canvas, 1972, 182.9 x 335.3 cm"
+      },
+      "candidates": [
+        {
+          "id": "lot-2a",
+          "imageUrl": "https://picsum.photos/seed/2a/600/600",
+          "artistName": "Alex Katz",
+          "title": "Red Coat",
+          "details": "Oil on canvas, 1983, 121.9 x 91.4 cm"
+        },
+        {
+          "id": "lot-2b",
+          "imageUrl": "https://picsum.photos/seed/2b/600/600",
+          "artistName": "Alex Katz",
+          "title": "Vincent and Tony",
+          "details": "Oil on canvas, 1969, 152.4 x 213.4 cm"
+        },
+        {
+          "id": "lot-2c",
+          "imageUrl": "https://picsum.photos/seed/2c/600/600",
+          "artistName": "Alex Katz",
+          "title": "Sunny",
+          "details": "Oil on canvas, 1976, 91.4 x 121.9 cm"
+        },
+        {
+          "id": "lot-2d",
+          "imageUrl": "https://picsum.photos/seed/2d/600/600",
+          "artistName": "Alex Katz",
+          "title": "Black Hat 2",
+          "details": "Oil on canvas, 2010, 208.3 x 157.5 cm"
+        }
+      ]
+    },
+    {
+      "targetId": "target-3",
+      "target": {
+        "id": "lot-target-3",
+        "imageUrl": "https://picsum.photos/seed/target-3/600/600",
+        "artistName": "Julie Mehretu",
+        "title": "Stadia III (study)",
+        "details": "Ink and acrylic on canvas, 2004, 68.6 x 91.4 cm"
+      },
+      "candidates": [
+        {
+          "id": "lot-3a",
+          "imageUrl": "https://picsum.photos/seed/3a/600/600",
+          "artistName": "Julie Mehretu",
+          "title": "Untitled 1",
+          "details": "Ink and acrylic on canvas, 2001, 60.9 x 76.2 cm"
+        },
+        {
+          "id": "lot-3b",
+          "imageUrl": "https://picsum.photos/seed/3b/600/600",
+          "artistName": "Julie Mehretu",
+          "title": "Retopistics: A Renegade Excavation (study)",
+          "details": "Ink and acrylic on canvas, 2001, 55.9 x 76.2 cm"
+        },
+        {
+          "id": "lot-3c",
+          "imageUrl": "https://picsum.photos/seed/3c/600/600",
+          "artistName": "Julie Mehretu",
+          "title": "Empirical Construction, Istanbul (study)",
+          "details": "Ink and acrylic on canvas, 2003, 78.7 x 96.5 cm"
+        },
+        {
+          "id": "lot-3d",
+          "imageUrl": "https://picsum.photos/seed/3d/600/600",
+          "artistName": "Julie Mehretu",
+          "title": "Untitled 2",
+          "details": "Ink and acrylic on canvas, 2005, 61 x 76.2 cm"
+        }
+      ]
+    }
+  ]
+}
