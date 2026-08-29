@@ -1,0 +1,44 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+/// One labeler's completed submission for a single target lot. Stores only
+/// the labeler's judgment, never the lot/artwork data itself (that lives in
+/// the static dataset JSON, see src/labeling/types.ts).
+model Submission {
+  id           String   @id @default(uuid())
+  labelerId    String
+  datasetId    String
+  targetLotId  String
+  durationMs   Int
+  createdAt    DateTime @default(now())
+
+  ratings Rating[]
+
+  /// One submission per labeler per target: enforces overlap-across-labelers
+  /// (multiple labelers can submit for the same target) while blocking a
+  /// single labeler from double-submitting.
+  @@unique([datasetId, targetLotId, labelerId])
+  /// Hot query: "what has this labeler completed" for queue resumption.
+  @@index([labelerId, datasetId])
+}
+
+/// A labeler's rating of one candidate lot against a submission's target.
+model Rating {
+  id              String  @id @default(uuid())
+  submissionId    String
+  candidateLotId  String
+  /// Mirrors the Rating union in src/labeling/types.ts. A String, not an
+  /// enum, so adding a scale value later is a data concern, not a migration.
+  rating          String
+  note            String?
+
+  submission Submission @relation(fields: [submissionId], references: [id], onDelete: Cascade)
+
+  @@index([submissionId])
+}
