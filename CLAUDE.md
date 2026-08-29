@@ -17,7 +17,7 @@ When asked about the project state ("sup?", "where we at", etc) you should scan 
 
 Before picking up a new ticket, ensure `main` is up to date with the remote, and that all ticket statuses are up to date.
 
-When asked to work on multiple tickets or an entire milestone at once, use /gh-stack to create a PR stack, one PR per ticket.
+When asked to work on multiple tickets or an entire milestone at once, use /gh-stack to create a PR stack, one PR per ticket. Before asking for review ensure the PRs are ready to merge (i.e. not "Draft" status).
 
 When you would benefit from synchronous attention from me, whether code review, or unblocking, use /ntfy to ping me with your request.
 
