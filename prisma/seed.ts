@@ -1,4 +1,10 @@
+import { config } from "dotenv"
 import { PrismaClient } from "@prisma/client"
+
+/// ts-node doesn't get the .env loading Prisma's own CLI commands do, so
+/// load it explicitly here (mirrors Next's own .env.local convention).
+config({ path: ".env.local" })
+config()
 
 const prisma = new PrismaClient()
 
