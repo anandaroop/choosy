@@ -5,8 +5,8 @@
   "packageManager": "yarn@4.17.1",
   "scripts": {
     "postinstall": "husky",
-    "predev": "node scripts/check-migrations.mjs",
-    "dev": "next dev",
+    "check-migrations": "node scripts/check-migrations.mjs",
+    "dev": "yarn check-migrations && next dev",
     "build": "next build",
     "start": "next start",
     "lint": "eslint src --ext .ts,.tsx",
