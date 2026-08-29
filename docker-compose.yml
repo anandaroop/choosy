@@ -1,0 +1,15 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: choosy
+      POSTGRES_PASSWORD: choosy
+      POSTGRES_DB: choosy_development
+    ports:
+      - "5434:5432"
+    volumes:
+      - choosy_pgdata:/var/lib/postgresql/data
+
+volumes:
+  choosy_pgdata:
