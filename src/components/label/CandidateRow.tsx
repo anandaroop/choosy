@@ -31,7 +31,7 @@ export function CandidateRow({
   const [noteExpanded, setNoteExpanded] = useState(note !== null)
 
   return (
-    <StackableBorderBox p={1}>
+    <StackableBorderBox p={1} data-testid={`candidate-row-${candidate.id}`}>
       <Flex gap={1}>
         <Image
           src={candidate.imageUrl}
