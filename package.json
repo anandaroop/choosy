@@ -33,6 +33,7 @@
   "dependencies": {
     "@artsy/icons": "^3.74.0",
     "@artsy/palette": "^46.9.3",
+    "@emotion/is-prop-valid": "^1.4.0",
     "@prisma/client": "^6.19.3",
     "@styled-system/theme-get": "^5.1.2",
     "@unleash/proxy-client-react": "^4.5.1",

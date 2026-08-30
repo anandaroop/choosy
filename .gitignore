@@ -40,3 +40,6 @@ yarn-error.log*
 
 # prisma
 /src/generated
+
+# playwright MCP verification artifacts
+/.playwright-mcp/
