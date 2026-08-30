@@ -42,10 +42,10 @@ export default async function handler(
     }
 
     const item = dataset.items.find((i) => i.targetId === targetId) ?? null
-    res.status(200).json({ item, progress })
+    res.status(200).json({ item, progress, datasetVersion: dataset.version })
     return
   }
 
   const item = selectNextItem(dataset, completedTargetIds)
-  res.status(200).json({ item, progress })
+  res.status(200).json({ item, progress, datasetVersion: dataset.version })
 }

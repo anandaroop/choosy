@@ -1,6 +1,6 @@
 import { SessionProvider } from "next-auth/react"
 import { PropsWithChildren } from "react"
-import { Theme } from "@artsy/palette"
+import { Theme, Toasts, ToastsProvider } from "@artsy/palette"
 import { StyleSheetManager } from "styled-components"
 
 import { FeatureFlagProvider } from "system/featureFlags/FeatureFlagProvider"
@@ -11,7 +11,12 @@ export function Boot({ children }: PropsWithChildren) {
     <StyleSheetManager shouldForwardProp={shouldForwardProp}>
       <Theme>
         <SessionProvider>
-          <FeatureFlagProvider>{children}</FeatureFlagProvider>
+          <FeatureFlagProvider>
+            <ToastsProvider>
+              {children}
+              <Toasts />
+            </ToastsProvider>
+          </FeatureFlagProvider>
         </SessionProvider>
       </Theme>
     </StyleSheetManager>

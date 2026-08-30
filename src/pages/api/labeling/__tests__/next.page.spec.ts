@@ -67,6 +67,7 @@ describe("GET /api/labeling/next", () => {
     const body = jsonBody(res)
     expect(body.item?.targetId).toBe("target-1")
     expect(body.progress).toEqual({ completed: 0, total: 3, remaining: 3 })
+    expect(body.datasetVersion).toEqual(expect.any(String))
   })
 
   it("200s with item: null when the queue is exhausted", async () => {

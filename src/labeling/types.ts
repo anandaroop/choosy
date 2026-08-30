@@ -77,6 +77,8 @@ export interface Progress {
 export interface NextItemResponse {
   item: LabelingItem | null
   progress: Progress
+  /** The active dataset's version, needed by the client to build a valid SubmissionPayload. */
+  datasetVersion: string
 }
 
 // ---------------------------------------------------------------------------
