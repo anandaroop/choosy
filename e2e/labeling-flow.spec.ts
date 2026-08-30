@@ -1,0 +1,81 @@
+import { expect, test } from "./fixtures/auth"
+
+const TARGET_1_CANDIDATES = ["lot-1a", "lot-1b", "lot-1c", "lot-1d"]
+const TARGET_2_CANDIDATES = ["lot-2a", "lot-2b", "lot-2c", "lot-2d"]
+const TARGET_3_CANDIDATES = ["lot-3a", "lot-3b", "lot-3c", "lot-3d"]
+
+async function rateAllCandidates(
+  page: import("@playwright/test").Page,
+  candidateIds: string[]
+) {
+  for (const candidateId of candidateIds) {
+    await page
+      .getByTestId(`candidate-row-${candidateId}`)
+      .getByRole("radio", { name: "Good" })
+      .click()
+  }
+}
+
+test("a labeler rates every target lot in the queue, through to completion", async ({
+  page,
+}) => {
+  const consoleErrors: string[] = []
+  page.on("console", (message) => {
+    if (message.type() === "error") consoleErrors.push(message.text())
+  })
+
+  await page.goto("/label")
+
+  // --- target-1 ---
+  await expect(page.getByText("0 of 3 rated")).toBeVisible()
+  await expect(page.getByText("Infinity Nets (TWAOA)")).toBeVisible()
+
+  const submit = page.getByRole("button", { name: "Submit" })
+  await expect(submit).toBeDisabled()
+
+  // Add a note on one candidate before rating it, and confirm the note text
+  // sticks around (this also exercises the TextArea's uncontrolled-value
+  // quirk noted in CandidateRow.tsx — no React console error should fire).
+  const firstRow = page.getByTestId(`candidate-row-${TARGET_1_CANDIDATES[0]}`)
+  await firstRow.getByRole("button", { name: "Add note" }).click()
+  await firstRow.getByPlaceholder("Add a note (optional)").fill("Closest match")
+  await expect(firstRow.getByPlaceholder("Add a note (optional)")).toHaveValue(
+    "Closest match"
+  )
+
+  // Rate three of the four candidates via click, and confirm Submit is still
+  // disabled until the last one is rated too.
+  await rateAllCandidates(page, TARGET_1_CANDIDATES.slice(0, 3))
+  await expect(submit).toBeDisabled()
+
+  // The last candidate is rated via the keyboard shortcut ("1" = Good),
+  // matching RatingControl's documented affordance.
+  const lastRadio = page
+    .getByTestId(`candidate-row-${TARGET_1_CANDIDATES[3]}`)
+    .getByRole("radio", { name: "Good" })
+  await lastRadio.focus()
+  await lastRadio.press("1")
+  await expect(lastRadio).toHaveAttribute("aria-checked", "true")
+
+  await expect(submit).toBeEnabled()
+  await submit.click()
+
+  // --- target-2 ---
+  await expect(page.getByText("1 of 3 rated")).toBeVisible()
+  await expect(page.getByText("Blue Umbrella 2")).toBeVisible()
+  await rateAllCandidates(page, TARGET_2_CANDIDATES)
+  await submit.click()
+
+  // --- target-3 ---
+  await expect(page.getByText("2 of 3 rated")).toBeVisible()
+  await expect(page.getByText("Stadia III (study)")).toBeVisible()
+  await rateAllCandidates(page, TARGET_3_CANDIDATES)
+  await submit.click()
+
+  // --- queue exhausted ---
+  await expect(
+    page.getByText("All caught up — no more items to label.")
+  ).toBeVisible()
+
+  expect(consoleErrors).toEqual([])
+})
