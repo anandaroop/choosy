@@ -5,7 +5,7 @@ import { expect as authedExpect, test as authedTest } from "./fixtures/auth"
 authedTest("a team-role user reaches /label", async ({ page }) => {
   await page.goto("/label")
   await authedExpect(page).toHaveURL("/label")
-  await authedExpect(page.getByText(/of 3 rated/)).toBeVisible()
+  await authedExpect(page.getByText(/of 5 rated/)).toBeVisible()
 })
 
 authedTest.describe(() => {
