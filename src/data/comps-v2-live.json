@@ -1,0 +1,205 @@
+{
+  "version": "comps-v2-live",
+  "items": [
+    {
+      "targetId": "target-1",
+      "target": {
+        "id": "593ec5c5a09a674cd9a162de",
+        "imageUrl": "https://d32dm0rphc51dk.cloudfront.net/LpXWP4fKwr8EjdTt8CfxkQ/large.jpg",
+        "artistName": "Yayoi Kusama",
+        "title": "Infinity Nets",
+        "details": "Acrylic on canvas, 2014, 129.5 x 162.6 cm"
+      },
+      "candidates": [
+        {
+          "id": "581ccc5a7622dd71ea00109f",
+          "imageUrl": "https://d32dm0rphc51dk.cloudfront.net/qSg8w56YK3YNy89pfnyofA/large.jpg",
+          "artistName": "Yayoi Kusama",
+          "title": "Infinity-Nets OPYTSDB (Gold)",
+          "details": "Acrylic on canvas, 2007, 200 x 200 cm"
+        },
+        {
+          "id": "5a905424cd530e59b0517103",
+          "imageUrl": "https://d32dm0rphc51dk.cloudfront.net/YYKaYccSsjkNEbcy1JMlhg/large.jpg",
+          "artistName": "Yayoi Kusama",
+          "title": "Blue Sky in the Midnight",
+          "details": "Acrylic on canvas, 2015, 129.5 x 129.5 cm"
+        },
+        {
+          "id": "5c936dbfe7fdf4002ba2affd",
+          "imageUrl": "https://d32dm0rphc51dk.cloudfront.net/fsHi2niNqtK9n-in13Jgug/large.jpg",
+          "artistName": "Yayoi Kusama",
+          "title": "Pumpkin Sculpture",
+          "details": "FRP, 2007, 117 x 120 x 120 cm"
+        },
+        {
+          "id": "66b4d244f5422e0013115bb0",
+          "imageUrl": "https://d32dm0rphc51dk.cloudfront.net/txbAWd4jwKKyNI9eMYwUNg/large.jpg",
+          "artistName": "Damien Hirst",
+          "title": "Titles and paint spots",
+          "details": "Fine Bone China dessert plate, screen-printed Currency Dot design, 2021, 20 cm diameter"
+        }
+      ]
+    },
+    {
+      "targetId": "target-2",
+      "target": {
+        "id": "5e540d11749a5e0011796699",
+        "imageUrl": "https://d32dm0rphc51dk.cloudfront.net/5CfRJC_8au8etjMicGF3gQ/large.jpg",
+        "artistName": "Alex Katz",
+        "title": "Blue Umbrella 2",
+        "details": "Archival pigment inks on Crane Museo Max paper, 2020, 76.2 x 115.6 cm"
+      },
+      "candidates": [
+        {
+          "id": "5e5d96d35c859000102a8d93",
+          "imageUrl": "https://d32dm0rphc51dk.cloudfront.net/i65zhNFn4k0rN41N5iHOtg/large.jpg",
+          "artistName": "Alex Katz",
+          "title": "Rose Bud",
+          "details": "Archival inks on Museum Board, 2019, 111.8 x 83.8 cm"
+        },
+        {
+          "id": "5e540cf3749a5e000d1a74d5",
+          "imageUrl": "https://d32dm0rphc51dk.cloudfront.net/fIhg8-9ZYU5y0aF-mvBA9A/large.jpg",
+          "artistName": "Alex Katz",
+          "title": "Dancer 2",
+          "details": "25-color silkscreen on Saunders Waterford paper, 2019, 152.4 x 110.5 cm"
+        },
+        {
+          "id": "55242bd27261697e3bde0300",
+          "imageUrl": "https://d32dm0rphc51dk.cloudfront.net/Vo7I1Ewu1-1RFjYKCd5Bkg/large.jpg",
+          "artistName": "Alex Katz",
+          "title": "Bather",
+          "details": "Oil on linen, 1959, 121.9 x 182.9 cm"
+        },
+        {
+          "id": "56d49157b202a3670c000088",
+          "imageUrl": "https://d32dm0rphc51dk.cloudfront.net/J_HyjoNiXJw4tmOTTRreYQ/large.jpg",
+          "artistName": "Alice Neel",
+          "title": "James Hunter Black Draftee",
+          "details": "Oil on canvas, 1965, 152.4 x 101.6 cm"
+        }
+      ]
+    },
+    {
+      "targetId": "target-3",
+      "target": {
+        "id": "599731d5b202a35093adb333",
+        "imageUrl": "https://d32dm0rphc51dk.cloudfront.net/_uXPbiFFCfLU51pC3oVjbg/large.jpg",
+        "artistName": "Julie Mehretu",
+        "title": "Stadia II",
+        "details": "Ink and acrylic on canvas, 2004, 272.73 x 355.92 cm"
+      },
+      "candidates": [
+        {
+          "id": "53c9b0c372616950952b0800",
+          "imageUrl": "https://d32dm0rphc51dk.cloudfront.net/OS1wdHd6B9g_JMSH-iL5og/large.jpg",
+          "artistName": "Julie Mehretu",
+          "title": "Stadia I",
+          "details": "Ink and acrylic on canvas, 2004, 271.8 x 355.6 cm"
+        },
+        {
+          "id": "57113901275b244329000182",
+          "imageUrl": "https://d32dm0rphc51dk.cloudfront.net/9_CPQgUCUV8MprIj2MzkIQ/large.jpg",
+          "artistName": "Julie Mehretu",
+          "title": "Palimpsest (old gods)",
+          "details": "Ink and Acrylic on canvas, 2006, 152.4 x 213.4 cm"
+        },
+        {
+          "id": "5723c9d38b3b81433300079c",
+          "imageUrl": "https://d32dm0rphc51dk.cloudfront.net/NsJyLCJaUEwhQm8iOv8g0w/large.jpg",
+          "artistName": "Julie Mehretu",
+          "title": "Entropia (review)",
+          "details": "32-color lithograph and screenprint, 2004, 85.1 x 111.8 cm"
+        },
+        {
+          "id": "583c18b4cd530e64730000cf",
+          "imageUrl": "https://d32dm0rphc51dk.cloudfront.net/aJWfTVIfdNd882Cyl2CqRw/large.jpg",
+          "artistName": "Gerhard Richter",
+          "title": "Grün Blau Rot 789-5",
+          "details": "Oil on canvas, 1993, 30 x 40 cm"
+        }
+      ]
+    },
+    {
+      "targetId": "target-4",
+      "target": {
+        "id": "571a49f98b3b8126900030a1",
+        "imageUrl": "https://d32dm0rphc51dk.cloudfront.net/suRBobxXK7St1_cHV-9X6Q/large.jpg",
+        "artistName": "Gerhard Richter",
+        "title": "Stadtbild Madrid (Cityscape Madrid)",
+        "details": "Oil on linen, 1968, 276.9 x 292.1 cm"
+      },
+      "candidates": [
+        {
+          "id": "57e9ab0a9c18db71fd0001d6",
+          "imageUrl": "https://d32dm0rphc51dk.cloudfront.net/nBc3B0Mh9NpbBkN1ZZOI_Q/large.jpg",
+          "artistName": "Gerhard Richter",
+          "title": "Window",
+          "details": "Oil on canvas, 1968, 200 x 401.3 cm"
+        },
+        {
+          "id": "571a49dfcd530e659300197f",
+          "imageUrl": "https://d32dm0rphc51dk.cloudfront.net/JtTtjvLxe0DGcY_jV70TXA/large.jpg",
+          "artistName": "Gerhard Richter",
+          "title": "Seestück (Seascape)",
+          "details": "Oil on linen, 1998, 290.2 x 290.2 cm"
+        },
+        {
+          "id": "546e6b367261690457fb0000",
+          "imageUrl": "https://d32dm0rphc51dk.cloudfront.net/_EJ6OgX6TyS6OYD5AWbWcw/large.jpg",
+          "artistName": "Gerhard Richter",
+          "title": "Abstraktes Bild (742-4)",
+          "details": "Oil on wood, 1991, 144.8 x 149.9 cm"
+        },
+        {
+          "id": "571a45d7139b214a97002f92",
+          "imageUrl": "https://d32dm0rphc51dk.cloudfront.net/rLq9k5YAzHzfjbsJSmu6ag/large.jpg",
+          "artistName": "Chuck Close",
+          "title": "Agnes",
+          "details": "Oil on canvas, 1998, 260.4 x 213.4 cm"
+        }
+      ]
+    },
+    {
+      "targetId": "target-5",
+      "target": {
+        "id": "4feb7caa81f8f1000100007e",
+        "imageUrl": "https://d32dm0rphc51dk.cloudfront.net/vlYfeo1v63QS8wFFEG6iMg/large.jpg",
+        "artistName": "Damien Hirst",
+        "title": "Away from the Flock",
+        "details": "Steel, glass, formaldehyde solution and lamb, 1994, 95.9 x 148.9 x 50.8 cm"
+      },
+      "candidates": [
+        {
+          "id": "53198ef0c9dc240ce6000111",
+          "imageUrl": "https://d32dm0rphc51dk.cloudfront.net/8OUo1m4L9xE1tB6bbYrTzA/large.jpg",
+          "artistName": "Damien Hirst",
+          "title": "Where There's a Will, There's a Way",
+          "details": "Glass, steel, aluminium, cast resin, plaster and painted pills, n.d., 182.9 x 274.3 x 10.2 cm"
+        },
+        {
+          "id": "5e343eb738f427000e0db977",
+          "imageUrl": "https://d32dm0rphc51dk.cloudfront.net/dikF2J8HtO17MvbF5gOiFA/large.jpg",
+          "artistName": "Damien Hirst",
+          "title": "Day by Day",
+          "details": "Glass, painted MDF, aluminium, stainless steel and pills, 2003, 30.5 x 61 x 10.2 cm"
+        },
+        {
+          "id": "5ea6c8081ebdf0000f33f6f2",
+          "imageUrl": "https://d32dm0rphc51dk.cloudfront.net/g2tdpZ8C207JXLV1fZlaOQ/large.jpg",
+          "artistName": "Damien Hirst",
+          "title": "Spot Clock Large",
+          "details": "White powdered metal quartz wall clock, 2009, 35 cm diameter"
+        },
+        {
+          "id": "565b9c597076d03dc1000720",
+          "imageUrl": "https://d32dm0rphc51dk.cloudfront.net/RkVf05cQRyyK5nWo5s8z1w/large.jpg",
+          "artistName": "Bridget Riley",
+          "title": "Blaze 4",
+          "details": "Emulsion on hardboard, 1964, 109 x 109 cm"
+        }
+      ]
+    }
+  ]
+}

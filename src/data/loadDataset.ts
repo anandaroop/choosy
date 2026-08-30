@@ -1,6 +1,6 @@
 import { Dataset } from "labeling/types"
 
-import comps from "./comps-v1.json"
+import comps from "./comps-v2-live.json"
 
 /**
  * The active labeling dataset, resolved at build time — no runtime fetch.

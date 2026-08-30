@@ -1,8 +1,35 @@
 import { expect, test } from "./fixtures/auth"
 
-const TARGET_1_CANDIDATES = ["lot-1a", "lot-1b", "lot-1c", "lot-1d"]
-const TARGET_2_CANDIDATES = ["lot-2a", "lot-2b", "lot-2c", "lot-2d"]
-const TARGET_3_CANDIDATES = ["lot-3a", "lot-3b", "lot-3c", "lot-3d"]
+const TARGET_1_CANDIDATES = [
+  "581ccc5a7622dd71ea00109f",
+  "5a905424cd530e59b0517103",
+  "5c936dbfe7fdf4002ba2affd",
+  "66b4d244f5422e0013115bb0",
+]
+const TARGET_2_CANDIDATES = [
+  "5e5d96d35c859000102a8d93",
+  "5e540cf3749a5e000d1a74d5",
+  "55242bd27261697e3bde0300",
+  "56d49157b202a3670c000088",
+]
+const TARGET_3_CANDIDATES = [
+  "53c9b0c372616950952b0800",
+  "57113901275b244329000182",
+  "5723c9d38b3b81433300079c",
+  "583c18b4cd530e64730000cf",
+]
+const TARGET_4_CANDIDATES = [
+  "57e9ab0a9c18db71fd0001d6",
+  "571a49dfcd530e659300197f",
+  "546e6b367261690457fb0000",
+  "571a45d7139b214a97002f92",
+]
+const TARGET_5_CANDIDATES = [
+  "53198ef0c9dc240ce6000111",
+  "5e343eb738f427000e0db977",
+  "5ea6c8081ebdf0000f33f6f2",
+  "565b9c597076d03dc1000720",
+]
 
 async function rateAllCandidates(
   page: import("@playwright/test").Page,
@@ -27,8 +54,8 @@ test("a labeler rates every target lot in the queue, through to completion", asy
   await page.goto("/label")
 
   // --- target-1 ---
-  await expect(page.getByText("0 of 3 rated")).toBeVisible()
-  await expect(page.getByText("Infinity Nets (TWAOA)")).toBeVisible()
+  await expect(page.getByText("0 of 5 rated")).toBeVisible()
+  await expect(page.getByText("Infinity Nets")).toBeVisible()
 
   const submit = page.getByRole("button", { name: "Submit" })
   await expect(submit).toBeDisabled()
@@ -61,15 +88,29 @@ test("a labeler rates every target lot in the queue, through to completion", asy
   await submit.click()
 
   // --- target-2 ---
-  await expect(page.getByText("1 of 3 rated")).toBeVisible()
+  await expect(page.getByText("1 of 5 rated")).toBeVisible()
   await expect(page.getByText("Blue Umbrella 2")).toBeVisible()
   await rateAllCandidates(page, TARGET_2_CANDIDATES)
   await submit.click()
 
   // --- target-3 ---
-  await expect(page.getByText("2 of 3 rated")).toBeVisible()
-  await expect(page.getByText("Stadia III (study)")).toBeVisible()
+  await expect(page.getByText("2 of 5 rated")).toBeVisible()
+  await expect(page.getByText("Stadia II")).toBeVisible()
   await rateAllCandidates(page, TARGET_3_CANDIDATES)
+  await submit.click()
+
+  // --- target-4 ---
+  await expect(page.getByText("3 of 5 rated")).toBeVisible()
+  await expect(
+    page.getByText("Stadtbild Madrid (Cityscape Madrid)")
+  ).toBeVisible()
+  await rateAllCandidates(page, TARGET_4_CANDIDATES)
+  await submit.click()
+
+  // --- target-5 ---
+  await expect(page.getByText("4 of 5 rated")).toBeVisible()
+  await expect(page.getByText("Away from the Flock")).toBeVisible()
+  await rateAllCandidates(page, TARGET_5_CANDIDATES)
   await submit.click()
 
   // --- queue exhausted ---

@@ -58,8 +58,8 @@ describe("GET /api/labeling/progress", () => {
     expect(res.statusCode).toBe(200)
     expect(res._getJSONData()).toEqual({
       completed: 1,
-      total: 3,
-      remaining: 2,
+      total: 5,
+      remaining: 4,
     })
     expect(mockGetCompletedTargetIds).toHaveBeenCalledWith(
       "user-1",

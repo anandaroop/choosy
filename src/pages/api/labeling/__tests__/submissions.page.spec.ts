@@ -33,13 +33,29 @@ function makeReqRes(
 
 function validPayload(): SubmissionPayload {
   return {
-    datasetVersion: "comps-v1",
+    datasetVersion: "comps-v2-live",
     targetId: "target-1",
     ratings: [
-      { candidateId: "lot-1a", rating: "strong_match", note: null },
-      { candidateId: "lot-1b", rating: "weak_match", note: null },
-      { candidateId: "lot-1c", rating: "no_match", note: null },
-      { candidateId: "lot-1d", rating: "no_match", note: null },
+      {
+        candidateId: "581ccc5a7622dd71ea00109f",
+        rating: "strong_match",
+        note: null,
+      },
+      {
+        candidateId: "5a905424cd530e59b0517103",
+        rating: "weak_match",
+        note: null,
+      },
+      {
+        candidateId: "5c936dbfe7fdf4002ba2affd",
+        rating: "no_match",
+        note: null,
+      },
+      {
+        candidateId: "66b4d244f5422e0013115bb0",
+        rating: "no_match",
+        note: null,
+      },
     ],
     durationMs: 1000,
   }

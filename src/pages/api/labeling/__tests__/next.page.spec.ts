@@ -66,7 +66,7 @@ describe("GET /api/labeling/next", () => {
     expect(res.statusCode).toBe(200)
     const body = jsonBody(res)
     expect(body.item?.targetId).toBe("target-1")
-    expect(body.progress).toEqual({ completed: 0, total: 3, remaining: 3 })
+    expect(body.progress).toEqual({ completed: 0, total: 5, remaining: 5 })
     expect(body.datasetVersion).toEqual(expect.any(String))
   })
 
@@ -75,6 +75,8 @@ describe("GET /api/labeling/next", () => {
       "target-1",
       "target-2",
       "target-3",
+      "target-4",
+      "target-5",
     ])
     const { req, res } = makeReqRes()
 
@@ -83,7 +85,7 @@ describe("GET /api/labeling/next", () => {
     expect(res.statusCode).toBe(200)
     const body = jsonBody(res)
     expect(body.item).toBeNull()
-    expect(body.progress).toEqual({ completed: 3, total: 3, remaining: 0 })
+    expect(body.progress).toEqual({ completed: 5, total: 5, remaining: 0 })
   })
 
   it("scopes the completed-ids query to labelerId and datasetId only", async () => {
