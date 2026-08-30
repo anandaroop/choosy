@@ -5,10 +5,17 @@
  * (confirmed via isolated repro for each): Stack always leaks flexDirection;
  * StackableBorderBox always leaks borderColor, even with no props at all;
  * TextArea always leaks its `error` default (false) as a non-boolean
- * attribute. Filtered out here so tests still fail on any other unexpected
- * console.error.
+ * attribute; Button with `loading` always leaks lineHeight, alignItems, and
+ * justifyContent (its internal loading-spinner markup). Filtered out here
+ * so tests still fail on any other unexpected console.error.
  */
-const KNOWN_LEAKED_PROPS = ["flexDirection", "borderColor"]
+const KNOWN_LEAKED_PROPS = [
+  "flexDirection",
+  "borderColor",
+  "lineHeight",
+  "alignItems",
+  "justifyContent",
+]
 
 function isKnownWarning(args: unknown[]): boolean {
   if (typeof args[0] !== "string") return false
