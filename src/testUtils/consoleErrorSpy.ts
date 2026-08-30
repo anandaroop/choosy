@@ -1,15 +1,33 @@
 /**
- * palette's Stack forwards its hardcoded flex-direction as a raw `flexDirection`
- * prop, which React logs as an unrecognized-DOM-attribute warning — a known
- * quirk of @artsy/palette@46, not something callers can avoid via props.
- * Filtered out here so tests still fail on any other unexpected console.error.
+ * A handful of @artsy/palette@46 components forward certain props straight
+ * to the DOM instead of consuming them, which React logs as a console.error
+ * — not something callers can avoid via different prop combinations
+ * (confirmed via isolated repro for each): Stack always leaks flexDirection;
+ * StackableBorderBox always leaks borderColor, even with no props at all;
+ * TextArea always leaks its `error` default (false) as a non-boolean
+ * attribute. Filtered out here so tests still fail on any other unexpected
+ * console.error.
  */
+const KNOWN_LEAKED_PROPS = ["flexDirection", "borderColor"]
+
 function isKnownWarning(args: unknown[]): boolean {
-  return (
-    typeof args[0] === "string" &&
+  if (typeof args[0] !== "string") return false
+
+  if (
     args[0].includes("React does not recognize the `%s` prop") &&
-    args.includes("flexDirection")
-  )
+    KNOWN_LEAKED_PROPS.some((prop) => args.includes(prop))
+  ) {
+    return true
+  }
+
+  if (
+    args[0].includes("for a non-boolean attribute") &&
+    args.includes("error")
+  ) {
+    return true
+  }
+
+  return false
 }
 
 export function watchConsoleErrors(): jest.SpyInstance {
