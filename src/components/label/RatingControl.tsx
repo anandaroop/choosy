@@ -1,5 +1,5 @@
 import { KeyboardEvent } from "react"
-import { Clickable, Flex, Text, useTheme } from "@artsy/palette"
+import { Clickable, Flex, Text } from "@artsy/palette"
 
 import { Rating } from "labeling/types"
 
@@ -15,8 +15,6 @@ const SEGMENTS: { rating: Rating; label: string; key: string }[] = [
 ]
 
 export function RatingControl({ value, onChange }: RatingControlProps) {
-  const { theme } = useTheme()
-
   function handleKeyDown(event: KeyboardEvent<HTMLButtonElement>) {
     const segment = SEGMENTS.find((s) => s.key === event.key)
     if (segment) {
@@ -35,11 +33,8 @@ export function RatingControl({ value, onChange }: RatingControlProps) {
           onClick={() => onChange(segment.rating)}
           onKeyDown={handleKeyDown}
           bg={value === segment.rating ? "mono10" : "mono0"}
-          // borderColor leaks to the DOM as an unrecognized attribute when
-          // applied to Clickable specifically (a palette@46 quirk — plain
-          // Box handles it fine); folding the color into the border
-          // shorthand avoids the separate prop entirely.
-          border={`1px solid ${theme.colors.mono30}`}
+          border="1px solid"
+          borderColor="mono30"
           px={1}
           py={0.5}
         >

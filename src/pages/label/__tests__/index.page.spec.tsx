@@ -3,7 +3,6 @@ import userEvent from "@testing-library/user-event"
 import { Theme } from "@artsy/palette"
 
 import { LabelingItem, NextItemResponse } from "labeling/types"
-import { watchConsoleErrors } from "testUtils/consoleErrorSpy"
 
 import LabelPage from "../index.page"
 
@@ -72,7 +71,7 @@ describe("LabelPage", () => {
 
   beforeEach(() => {
     jest.clearAllMocks()
-    consoleError = watchConsoleErrors()
+    consoleError = jest.spyOn(console, "error").mockImplementation()
     mockUseNextTask.mockReturnValue({
       data: makeResponse(),
       mutate: mockMutate,
@@ -80,6 +79,7 @@ describe("LabelPage", () => {
   })
 
   afterEach(() => {
+    expect(consoleError).not.toHaveBeenCalled()
     consoleError.mockRestore()
   })
 
