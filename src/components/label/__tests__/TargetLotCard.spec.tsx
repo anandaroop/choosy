@@ -2,7 +2,6 @@ import { render, screen } from "@testing-library/react"
 import { Theme } from "@artsy/palette"
 
 import { Lot } from "labeling/types"
-import { watchConsoleErrors } from "testUtils/consoleErrorSpy"
 
 import { TargetLotCard } from "../TargetLotCard"
 
@@ -25,10 +24,11 @@ describe("TargetLotCard", () => {
   let consoleError: jest.SpyInstance
 
   beforeEach(() => {
-    consoleError = watchConsoleErrors()
+    consoleError = jest.spyOn(console, "error").mockImplementation()
   })
 
   afterEach(() => {
+    expect(consoleError).not.toHaveBeenCalled()
     consoleError.mockRestore()
   })
 

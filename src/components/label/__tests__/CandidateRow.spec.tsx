@@ -3,7 +3,6 @@ import userEvent from "@testing-library/user-event"
 import { Theme } from "@artsy/palette"
 
 import { Lot } from "labeling/types"
-import { watchConsoleErrors } from "testUtils/consoleErrorSpy"
 
 import { CandidateRow } from "../CandidateRow"
 
@@ -26,10 +25,11 @@ describe("CandidateRow", () => {
   let consoleError: jest.SpyInstance
 
   beforeEach(() => {
-    consoleError = watchConsoleErrors()
+    consoleError = jest.spyOn(console, "error").mockImplementation()
   })
 
   afterEach(() => {
+    expect(consoleError).not.toHaveBeenCalled()
     consoleError.mockRestore()
   })
 
