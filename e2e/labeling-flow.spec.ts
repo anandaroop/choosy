@@ -95,7 +95,10 @@ test("a labeler rates every target lot in the queue, through to completion", asy
 
   // --- target-3 ---
   await expect(page.getByText("2 of 5 rated")).toBeVisible()
-  await expect(page.getByText("Stadia II")).toBeVisible()
+  // exact: true, since the plain substring match also resolves against the
+  // TargetLotCard's Stack ancestor's flattened text ("Julie MehretuStadia
+  // IInk and...") — a strict-mode violation without it.
+  await expect(page.getByText("Stadia II", { exact: true })).toBeVisible()
   await rateAllCandidates(page, TARGET_3_CANDIDATES)
   await submit.click()
 
