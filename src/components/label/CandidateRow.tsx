@@ -7,6 +7,7 @@ import {
   Stack,
   Text,
   TextArea,
+  Spacer,
 } from "@artsy/palette"
 
 import { Lot, Rating } from "labeling/types"
@@ -33,6 +34,8 @@ export function CandidateRow({
   return (
     <StackableBorderBox p={1} data-testid={`candidate-row-${candidate.id}`}>
       <Flex gap={1}>
+        <RatingControl value={rating} onChange={onRatingChange} />
+        <Spacer x={1} />
         <Image
           src={candidate.imageUrl}
           alt={candidate.title}
@@ -44,8 +47,10 @@ export function CandidateRow({
             {candidate.artistName}
           </Text>
           <Text variant="sm">{candidate.title}</Text>
+          <Text variant="xs" color="mono60">
+            {candidate.details}
+          </Text>
         </Stack>
-        <RatingControl value={rating} onChange={onRatingChange} />
       </Flex>
       {noteExpanded ? (
         // TextArea manages its own internal state from defaultValue and
