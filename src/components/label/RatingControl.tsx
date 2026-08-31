@@ -37,6 +37,8 @@ export function RatingControl({ value, onChange }: RatingControlProps) {
           borderColor="mono30"
           px={1}
           py={0.5}
+          width={"4em"}
+          textAlign={"center"}
         >
           <Text variant="xs">{segment.label}</Text>
         </Clickable>
