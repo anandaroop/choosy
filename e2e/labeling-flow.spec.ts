@@ -75,15 +75,17 @@ test("a labeler rates every target lot in the queue, through to completion", asy
   await rateAllCandidates(page, TARGET_1_CANDIDATES.slice(0, 3))
   await expect(submit).toBeDisabled()
 
-  // The last candidate is rated via the keyboard shortcut ("1" = Good),
-  // matching RatingControl's documented affordance.
+  // The last candidate is rated via the keyboard shortcut ("1" = Good). By
+  // now keyboard mode has already moved focus here after the third click.
   const lastRadio = page
     .getByTestId(`candidate-row-${TARGET_1_CANDIDATES[3]}`)
     .getByRole("radio", { name: "Good" })
-  await lastRadio.focus()
-  await lastRadio.press("1")
+  await expect(lastRadio).toBeFocused()
+  await page.keyboard.press("1")
   await expect(lastRadio).toHaveAttribute("aria-checked", "true")
 
+  // Rating the last candidate moves keyboard focus to Submit, now enabled.
+  await expect(submit).toBeFocused()
   await expect(submit).toBeEnabled()
   await submit.click()
 
@@ -120,6 +122,63 @@ test("a labeler rates every target lot in the queue, through to completion", asy
   await expect(
     page.getByText("All caught up — no more items to label.")
   ).toBeVisible()
+
+  expect(consoleErrors).toEqual([])
+})
+
+test("a labeler completes a target in five keystrokes", async ({ page }) => {
+  const consoleErrors: string[] = []
+  page.on("console", (message) => {
+    if (message.type() === "error") consoleErrors.push(message.text())
+  })
+
+  await page.goto("/label")
+  await expect(page.getByText("0 of 5 rated")).toBeVisible()
+
+  // Screen load puts keyboard focus on the first candidate's rating control.
+  const firstRadio = page
+    .getByTestId(`candidate-row-${TARGET_1_CANDIDATES[0]}`)
+    .getByRole("radio", { name: "Good" })
+  await expect(firstRadio).toBeFocused()
+
+  // Four keystrokes rate all four candidates and land focus on Submit.
+  await page.keyboard.press("1")
+  await page.keyboard.press("3")
+  await page.keyboard.press("2")
+  await page.keyboard.press("1")
+
+  await expect(firstRadio).toHaveAttribute("aria-checked", "true")
+  await expect(
+    page
+      .getByTestId(`candidate-row-${TARGET_1_CANDIDATES[1]}`)
+      .getByRole("radio", { name: "Bad" })
+  ).toHaveAttribute("aria-checked", "true")
+  await expect(
+    page
+      .getByTestId(`candidate-row-${TARGET_1_CANDIDATES[2]}`)
+      .getByRole("radio", { name: "Neutral" })
+  ).toHaveAttribute("aria-checked", "true")
+  await expect(
+    page
+      .getByTestId(`candidate-row-${TARGET_1_CANDIDATES[3]}`)
+      .getByRole("radio", { name: "Good" })
+  ).toHaveAttribute("aria-checked", "true")
+
+  const submit = page.getByRole("button", { name: "Submit" })
+  await expect(submit).toBeFocused()
+  await expect(submit).toBeEnabled()
+
+  // The fifth keystroke: Enter is native activation of the focused button.
+  await page.keyboard.press("Enter")
+
+  // Advanced to the next target, with the cursor reset to its first row.
+  await expect(page.getByText("1 of 5 rated")).toBeVisible()
+  await expect(page.getByText("Blue Umbrella 2")).toBeVisible()
+  await expect(
+    page
+      .getByTestId(`candidate-row-${TARGET_2_CANDIDATES[0]}`)
+      .getByRole("radio", { name: "Good" })
+  ).toBeFocused()
 
   expect(consoleErrors).toEqual([])
 })

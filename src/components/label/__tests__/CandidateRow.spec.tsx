@@ -132,4 +132,45 @@ describe("CandidateRow", () => {
     await user.click(screen.getByRole("radio", { name: /good/i }))
     expect(onRatingChange).toHaveBeenCalledWith("strong_match")
   })
+
+  it("calls onEscapeFromNote when Escape is pressed in the note, without recording a rating", async () => {
+    const user = userEvent.setup()
+    const onEscapeFromNote = jest.fn()
+    const onRatingChange = jest.fn()
+    renderWithTheme(
+      <CandidateRow
+        candidate={makeCandidate()}
+        rating={null}
+        note={null}
+        onRatingChange={onRatingChange}
+        onNoteChange={jest.fn()}
+        onEscapeFromNote={onEscapeFromNote}
+      />
+    )
+
+    await user.click(screen.getByText(/add note/i))
+    await user.type(screen.getByRole("textbox"), "1{Escape}")
+
+    expect(onEscapeFromNote).toHaveBeenCalledTimes(1)
+    expect(onRatingChange).not.toHaveBeenCalled()
+  })
+
+  it("types digits literally in the note instead of triggering a rating", async () => {
+    const user = userEvent.setup()
+    const onRatingChange = jest.fn()
+    renderWithTheme(
+      <CandidateRow
+        candidate={makeCandidate()}
+        rating={null}
+        note={null}
+        onRatingChange={onRatingChange}
+        onNoteChange={jest.fn()}
+      />
+    )
+
+    await user.click(screen.getByText(/add note/i))
+    await user.type(screen.getByRole("textbox"), "123")
+
+    expect(onRatingChange).not.toHaveBeenCalled()
+  })
 })

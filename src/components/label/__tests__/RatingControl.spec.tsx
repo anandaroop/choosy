@@ -81,4 +81,52 @@ describe("RatingControl", () => {
       screen.getByRole("radio", { name: new RegExp(label, "i") })
     ).toBeChecked()
   })
+
+  it("is grouped under a single accessible radiogroup", () => {
+    renderWithTheme(
+      <RatingControl
+        value={null}
+        onChange={jest.fn()}
+        label="Rating for Red Coat"
+      />
+    )
+
+    expect(
+      screen.getByRole("radiogroup", { name: "Rating for Red Coat" })
+    ).toBeInTheDocument()
+  })
+
+  it("uses a roving tabindex: only the first segment is tabbable when nothing is checked", () => {
+    renderWithTheme(<RatingControl value={null} onChange={jest.fn()} />)
+
+    expect(screen.getByRole("radio", { name: /good/i })).toHaveAttribute(
+      "tabIndex",
+      "0"
+    )
+    expect(screen.getByRole("radio", { name: /neutral/i })).toHaveAttribute(
+      "tabIndex",
+      "-1"
+    )
+    expect(screen.getByRole("radio", { name: /bad/i })).toHaveAttribute(
+      "tabIndex",
+      "-1"
+    )
+  })
+
+  it("uses a roving tabindex: the checked segment is tabbable", () => {
+    renderWithTheme(<RatingControl value="no_match" onChange={jest.fn()} />)
+
+    expect(screen.getByRole("radio", { name: /good/i })).toHaveAttribute(
+      "tabIndex",
+      "-1"
+    )
+    expect(screen.getByRole("radio", { name: /neutral/i })).toHaveAttribute(
+      "tabIndex",
+      "-1"
+    )
+    expect(screen.getByRole("radio", { name: /bad/i })).toHaveAttribute(
+      "tabIndex",
+      "0"
+    )
+  })
 })
