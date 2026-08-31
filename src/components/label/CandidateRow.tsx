@@ -20,6 +20,10 @@ interface CandidateRowProps {
   note: string | null
   onRatingChange: (rating: Rating) => void
   onNoteChange: (note: string) => void
+  /** Ref to this row's currently-tabbable rating segment, for a page-level focus registry. */
+  segmentRef?: (node: HTMLButtonElement | null) => void | (() => void)
+  /** Escape pressed while the note is focused — return focus to this row's rating control. */
+  onEscapeFromNote?: () => void
 }
 
 export function CandidateRow({
@@ -28,13 +32,20 @@ export function CandidateRow({
   note,
   onRatingChange,
   onNoteChange,
+  segmentRef,
+  onEscapeFromNote,
 }: CandidateRowProps) {
   const [noteExpanded, setNoteExpanded] = useState(note !== null)
 
   return (
     <StackableBorderBox p={1} data-testid={`candidate-row-${candidate.id}`}>
       <Flex gap={1}>
-        <RatingControl value={rating} onChange={onRatingChange} />
+        <RatingControl
+          value={rating}
+          onChange={onRatingChange}
+          segmentRef={segmentRef}
+          label={`Rating for ${candidate.title}`}
+        />
         <Spacer x={1} />
         <Image
           src={candidate.imageUrl}
@@ -60,6 +71,13 @@ export function CandidateRow({
         <TextArea
           defaultValue={note ?? ""}
           onChange={({ value }) => onNoteChange(value)}
+          onKeyDown={(event) => {
+            if (event.key === "Escape") {
+              event.preventDefault()
+              event.stopPropagation()
+              onEscapeFromNote?.()
+            }
+          }}
           placeholder="Add a note (optional)"
         />
       ) : (
