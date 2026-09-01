@@ -8,7 +8,11 @@ interface TargetLotCardProps {
 
 export function TargetLotCard({ target }: TargetLotCardProps) {
   return (
-    <Box position="sticky" top={0} bg="mono0" py={2}>
+    // zIndex pins this above later positioned descendants (e.g. TextArea's
+    // own position:relative wrapper) that would otherwise paint over it
+    // while sticky and mid-scroll, since neither side sets one by default
+    // and DOM order alone would let the later element win.
+    <Box position="sticky" top={0} zIndex={1} bg="mono0" py={2}>
       <Flex gap={2}>
         <Image
           src={target.imageUrl}
