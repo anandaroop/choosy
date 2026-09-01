@@ -20,8 +20,8 @@ export function TargetLotCard({ target }: TargetLotCardProps) {
         <Image
           src={target.imageUrl}
           alt={target.title}
-          width={120}
-          height={120}
+          width={200}
+          height={200}
         />
         <Stack gap={0.5}>
           <Text variant="sm-display" color="mono60">
