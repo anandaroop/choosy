@@ -1,6 +1,8 @@
-import { Box, Flex, Image, Stack, Text } from "@artsy/palette"
+import { Box, Flex, Stack, Text } from "@artsy/palette"
 
 import { Lot } from "labeling/types"
+
+import { ZoomableImage } from "./ZoomableImage"
 
 interface TargetLotCardProps {
   target: Lot
@@ -17,7 +19,7 @@ export function TargetLotCard({ target }: TargetLotCardProps) {
       boxShadow={"0 4px 4px #00000011"}
     >
       <Flex gap={2}>
-        <Image
+        <ZoomableImage
           src={target.imageUrl}
           alt={target.title}
           width={200}
