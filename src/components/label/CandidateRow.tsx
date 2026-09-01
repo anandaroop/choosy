@@ -1,13 +1,13 @@
 import { useState } from "react"
 import {
-  Clickable,
+  Box,
+  Button,
   Flex,
   Image,
-  StackableBorderBox,
+  Spacer,
   Stack,
   Text,
   TextArea,
-  Spacer,
 } from "@artsy/palette"
 
 import { Lot, Rating } from "labeling/types"
@@ -38,7 +38,13 @@ export function CandidateRow({
   const [noteExpanded, setNoteExpanded] = useState(note !== null)
 
   return (
-    <StackableBorderBox p={1} data-testid={`candidate-row-${candidate.id}`}>
+    <Box
+      data-testid={`candidate-row-${candidate.id}`}
+      px={1}
+      py={2}
+      borderBottom={"solid 1px"}
+      borderColor={"mono10"}
+    >
       <Flex gap={1}>
         <RatingControl
           value={rating}
@@ -83,10 +89,17 @@ export function CandidateRow({
           placeholder="Add a note (optional)"
         />
       ) : (
-        <Clickable onClick={() => setNoteExpanded(true)}>
-          <Text variant="xs">Add note</Text>
-        </Clickable>
+        <>
+          <Button
+            onClick={() => setNoteExpanded(true)}
+            size={"small"}
+            variant={"secondaryBlack"}
+            borderColor={"mono30"}
+          >
+            Add note
+          </Button>
+        </>
       )}
-    </StackableBorderBox>
+    </Box>
   )
 }
