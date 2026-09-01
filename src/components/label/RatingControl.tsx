@@ -12,10 +12,15 @@ interface RatingControlProps {
   label?: string
 }
 
-export const SEGMENTS: { rating: Rating; label: string; key: string }[] = [
-  { rating: "strong_match", label: "Good", key: "1" },
-  { rating: "weak_match", label: "Neutral", key: "2" },
-  { rating: "no_match", label: "Bad", key: "3" },
+export const SEGMENTS: {
+  rating: Rating
+  label: string
+  key: string
+  color: string
+}[] = [
+  { rating: "strong_match", label: "Good", key: "1", color: "green" },
+  { rating: "weak_match", label: "Neutral", key: "2", color: "gray" },
+  { rating: "no_match", label: "Bad", key: "3", color: "red" },
 ]
 
 export function RatingControl({
@@ -66,10 +71,12 @@ export function RatingControl({
           borderColor="mono30"
           px={1}
           py={0.5}
-          width={"4em"}
+          width={"5em"}
           textAlign={"center"}
         >
-          <Text variant="xs">{segment.label}</Text>
+          <Text variant="xs" color={segment.color}>
+            {segment.label}
+          </Text>
         </Clickable>
       ))}
     </Flex>
