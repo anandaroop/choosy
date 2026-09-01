@@ -63,6 +63,7 @@ export function CandidateRow({
           </Text>
         </Stack>
       </Flex>
+      <Spacer y={1} />
       {noteExpanded ? (
         // TextArea manages its own internal state from defaultValue and
         // ignores a `value` prop — passing one collides with its own
@@ -78,6 +79,7 @@ export function CandidateRow({
               onEscapeFromNote?.()
             }
           }}
+          width={"40em"}
           placeholder="Add a note (optional)"
         />
       ) : (
