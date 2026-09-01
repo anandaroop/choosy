@@ -56,8 +56,8 @@ export function CandidateRow({
         <Image
           src={candidate.imageUrl}
           alt={candidate.title}
-          width={60}
-          height={60}
+          width={100}
+          height={100}
         />
         <Stack gap={0.5}>
           <Text variant="xs" color="mono60">
