@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react"
 import { Box, Button, Spacer, Text, useToasts } from "@artsy/palette"
 
 import { CandidateRow } from "components/label/CandidateRow"
+import { ProgressIndicator } from "components/label/ProgressIndicator"
 import { TargetLotCard } from "components/label/TargetLotCard"
 import { useTaskDuration } from "components/label/useTaskDuration"
 import { ZoomPanel } from "components/label/ZoomPanel"
@@ -174,9 +175,10 @@ export default function LabelPage() {
   return (
     <ZoomProvider>
       <Box ref={formRef}>
-        <Text>
-          {data.progress.completed} of {data.progress.total} rated
-        </Text>
+        <ProgressIndicator
+          completed={data.progress.completed}
+          total={data.progress.total}
+        />
         <TargetLotCard target={item.target} />
         <Spacer y={2} />
         {item.candidates.map((candidate, index) => {
