@@ -19,7 +19,7 @@ export function ProgressIndicator({
   total,
 }: ProgressIndicatorProps) {
   return (
-    <Flex alignItems="center" gap={0.5}>
+    <Flex alignItems="center" gap={0.5} mt={1}>
       {Array.from({ length: total }, (_, index) =>
         index < completed ? (
           <CheckmarkFillIcon
