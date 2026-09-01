@@ -4,6 +4,8 @@ import { Box, Button, Spacer, Text, useToasts } from "@artsy/palette"
 import { CandidateRow } from "components/label/CandidateRow"
 import { TargetLotCard } from "components/label/TargetLotCard"
 import { useTaskDuration } from "components/label/useTaskDuration"
+import { ZoomPanel } from "components/label/ZoomPanel"
+import { ZoomProvider } from "components/label/ZoomContext"
 import { CandidateRating, LabelingItem, Rating } from "labeling/types"
 import { submitTask } from "utils/api/mutations"
 import { useNextTask } from "utils/hooks/useApi"
@@ -170,38 +172,41 @@ export default function LabelPage() {
   }
 
   return (
-    <Box ref={formRef}>
-      <Text>
-        {data.progress.completed} of {data.progress.total} rated
-      </Text>
-      <TargetLotCard target={item.target} />
-      <Spacer y={2} />
-      {item.candidates.map((candidate, index) => {
-        const r = ratings[candidate.id] ?? { rating: null, note: null }
-        return (
-          <CandidateRow
-            key={candidate.id}
-            candidate={candidate}
-            rating={r.rating}
-            note={r.note}
-            onRatingChange={(rating) =>
-              handleRatingChange(index, candidate.id, rating)
-            }
-            onNoteChange={(note) => updateNote(candidate.id, note)}
-            segmentRef={registerRatingRef(candidate.id)}
-            onEscapeFromNote={() => focusRatingControl(candidate.id)}
-          />
-        )
-      })}
-      <Spacer y={2} />
-      <Button
-        ref={submitRef}
-        onClick={handleSubmit}
-        disabled={!allRated || submitting}
-        loading={submitting}
-      >
-        Submit
-      </Button>
-    </Box>
+    <ZoomProvider>
+      <Box ref={formRef}>
+        <Text>
+          {data.progress.completed} of {data.progress.total} rated
+        </Text>
+        <TargetLotCard target={item.target} />
+        <Spacer y={2} />
+        {item.candidates.map((candidate, index) => {
+          const r = ratings[candidate.id] ?? { rating: null, note: null }
+          return (
+            <CandidateRow
+              key={candidate.id}
+              candidate={candidate}
+              rating={r.rating}
+              note={r.note}
+              onRatingChange={(rating) =>
+                handleRatingChange(index, candidate.id, rating)
+              }
+              onNoteChange={(note) => updateNote(candidate.id, note)}
+              segmentRef={registerRatingRef(candidate.id)}
+              onEscapeFromNote={() => focusRatingControl(candidate.id)}
+            />
+          )
+        })}
+        <Spacer y={2} />
+        <Button
+          ref={submitRef}
+          onClick={handleSubmit}
+          disabled={!allRated || submitting}
+          loading={submitting}
+        >
+          Submit
+        </Button>
+      </Box>
+      <ZoomPanel />
+    </ZoomProvider>
   )
 }

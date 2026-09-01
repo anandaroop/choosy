@@ -3,7 +3,6 @@ import {
   Box,
   Button,
   Flex,
-  Image,
   Spacer,
   Stack,
   Text,
@@ -13,6 +12,7 @@ import {
 import { Lot, Rating } from "labeling/types"
 
 import { RatingControl } from "./RatingControl"
+import { ZoomableImage } from "./ZoomableImage"
 
 interface CandidateRowProps {
   candidate: Lot
@@ -53,7 +53,7 @@ export function CandidateRow({
           label={`Rating for ${candidate.title}`}
         />
         <Spacer x={1} />
-        <Image
+        <ZoomableImage
           src={candidate.imageUrl}
           alt={candidate.title}
           width={100}

@@ -182,3 +182,55 @@ test("a labeler completes a target in five keystrokes", async ({ page }) => {
 
   expect(consoleErrors).toEqual([])
 })
+
+test("hovering a thumbnail shows a zoomed preview in a fixed spot", async ({
+  page,
+}) => {
+  await page.goto("/label")
+  await expect(page.getByText("0 of 5 rated")).toBeVisible()
+
+  const zoom = page.getByTestId("image-zoom")
+  await expect(zoom).toBeHidden()
+
+  const candidateA = page
+    .getByTestId(`candidate-row-${TARGET_1_CANDIDATES[0]}`)
+    .getByRole("img")
+  const candidateB = page
+    .getByTestId(`candidate-row-${TARGET_1_CANDIDATES[1]}`)
+    .getByRole("img")
+
+  const candidateASrc = await candidateA.getAttribute("src")
+  const candidateBSrc = await candidateB.getAttribute("src")
+
+  await candidateA.hover()
+  await expect(zoom).toBeVisible()
+  await expect(page.getByTestId("image-zoom-img")).toHaveAttribute(
+    "src",
+    candidateASrc!
+  )
+
+  // Pinned to a fixed spot, not anchored to the hovered thumbnail — hovering
+  // a different row re-points the same panel rather than moving it. The
+  // panel itself is right/top-anchored via CSS (`top: 16, right: 16`), so
+  // its rendered width can shift a few px with each image's own aspect
+  // ratio — assert the anchor (top edge, and distance from the viewport's
+  // right edge) stays put, not full box equality.
+  const viewport = page.viewportSize()!
+  const zoomBoxBefore = await zoom.boundingBox()
+  const rightGapBefore =
+    viewport.width - (zoomBoxBefore!.x + zoomBoxBefore!.width)
+
+  await candidateB.hover()
+  await expect(page.getByTestId("image-zoom-img")).toHaveAttribute(
+    "src",
+    candidateBSrc!
+  )
+  const zoomBoxAfter = await zoom.boundingBox()
+  const rightGapAfter = viewport.width - (zoomBoxAfter!.x + zoomBoxAfter!.width)
+
+  expect(zoomBoxAfter!.y).toBe(zoomBoxBefore!.y)
+  expect(rightGapAfter).toBeCloseTo(rightGapBefore, 0)
+
+  await page.mouse.move(0, 0)
+  await expect(zoom).toBeHidden()
+})
