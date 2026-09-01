@@ -7,5 +7,5 @@ import { signOut } from "next-auth/react"
  */
 export async function federatedSignOut() {
   await signOut({ redirect: false })
-  window.location.href = `${process.env.NEXT_PUBLIC_GRAVITY_URL}/api/v1/sessions/destroy?redirect_uri=${window.location.origin}`
+  window.location.href = `${process.env.NEXT_PUBLIC_GRAVITY_URL}/api/v1/sessions/destroy?redirect_uri=${encodeURIComponent(window.location.origin)}`
 }
