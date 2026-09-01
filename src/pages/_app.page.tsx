@@ -1,3 +1,5 @@
+import { Session } from "next-auth"
+import { getSession } from "next-auth/react"
 import App, { AppContext, AppInitialProps, AppProps } from "next/app"
 
 import { Layout } from "components/Layout"
@@ -6,16 +8,18 @@ import type { AccessResult } from "utils/access"
 
 interface ChoosyAppProps {
   accessResult: AccessResult
+  session: Session | null
 }
 
 export default function ChoosyApp({
   Component,
   pageProps,
   accessResult,
+  session,
 }: AppProps & ChoosyAppProps) {
   return (
-    <Boot>
-      <Layout accessResult={accessResult}>
+    <Boot session={session}>
+      <Layout accessResult={accessResult} user={session?.user}>
         <Component {...pageProps} />
       </Layout>
     </Boot>
@@ -25,7 +29,6 @@ export default function ChoosyApp({
 ChoosyApp.getInitialProps = async (
   context: AppContext
 ): Promise<AppInitialProps & ChoosyAppProps> => {
-  const ctx = await App.getInitialProps(context)
   const { req } = context.ctx
 
   // _app.page.tsx is compiled for both server and client, so it must never
@@ -37,9 +40,18 @@ ChoosyApp.getInitialProps = async (
   // On client-side route transitions, req/res are absent and a same-origin
   // relative fetch carries cookies automatically — either way, access is
   // never gated on client-side useFlag or a value cached across navigations.
-  const accessResult = await fetchAccessResult(req)
+  //
+  // getSession is next-auth's own client (already used elsewhere in the
+  // app), safe to import here unlike utils/access — fetched alongside so
+  // Layout/GlobalNav have the signed-in user on first render, with no
+  // separate client-side session fetch.
+  const [ctx, accessResult, session] = await Promise.all([
+    App.getInitialProps(context),
+    fetchAccessResult(req),
+    getSession({ req }),
+  ])
 
-  return { ...ctx, accessResult }
+  return { ...ctx, accessResult, session }
 }
 
 async function fetchAccessResult(
